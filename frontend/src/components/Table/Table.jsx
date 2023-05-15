@@ -1,6 +1,16 @@
-// import { fetchAndValidateProducts } from '../../services/api';
+import { useState } from 'react';
+
+import { fetchAndValidateProducts } from '../../utils/api';
 
 export default function Table() {
+  const [tableData, setTableData] = useState([])
+
+  const fetchApi = async () => {
+    const payload = 'payload'
+    const response = await fetchAndValidateProducts({payload});
+    setTableData(response.data)
+  };
+
   return (
     <div>
 
@@ -12,19 +22,20 @@ export default function Table() {
       />
       <button
         type='button'
-        disabled={()=>{}}
-        onClick={()=>{}}
+        disabled={false}
+        onClick={fetchApi}
       >
         Validar
       </button>
       <button
         type='button'
-        disabled={()=>{}}
+        disabled={false}
         onClick={()=>{}}
       >
         Atualizar
       </button>
       
+      {tableData && (
         <table>
           <thead>
             <tr>
@@ -36,15 +47,18 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-              <tr >
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            {tableData.map((product, index) => (
+              <tr key={index}>
+                <td>{product.code}</td>
+                <td>{product.name}</td>
+                <td>{product.currentPrice}</td>
+                <td>{product.newPrice}</td>
+                <td>{product.validation}</td>
               </tr>
+            ))}
           </tbody>
         </table>
+      )}
 
     </div>
   )
