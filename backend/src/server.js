@@ -1,4 +1,6 @@
+require('dotenv').config();
 const app = require('./app');
+const dbConnection = require('./models/database/connection');
 
 const colors = {
 	green: '\x1b[32m',
@@ -7,11 +9,18 @@ const colors = {
 	reset: '\x1b[0m'
 };
 
-const PORT = 3001;
+const PORT = process.env.API_PORT;
 
 app.listen(PORT, async () => {
 	console.info(
 		`\nBackend server running on port ${colors.green}${PORT}${colors.reset}`,
 		`\n➜  Local: ${colors.cyan}http://localhost:${PORT}/${colors.reset}`
 	);
+	try {
+		const [result] = await dbConnection.execute('SELECT 1');
+		if (result) console.info('➜  MySQL: connection OK\n');
+
+	} catch(error) {
+		console.info(`➜  MySQL: ${colors.red}unable to connect. ${error.code}${colors.reset}\n`);
+	}
 });
