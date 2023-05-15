@@ -9,3 +9,13 @@ export async function fetchAndValidateProducts(payload) {
     return [];
   }
 }
+
+export async function updateProducts(payload) {
+  try {
+    const response = await API.patch('products/', payload);
+    return response;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`${error.name}: ${error.message}`);
+  }
+}

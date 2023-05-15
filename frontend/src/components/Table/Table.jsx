@@ -1,16 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
-import { fetchAndValidateProducts } from '../../utils/api';
+import { fetchAndValidateProducts, updateProducts } from '../../utils/api';
 import csvReader from '../../utils/csvReader';
 import formatCurrency from '../../utils/formatCurrency'
 
 export default function Table() {
+  const inputRef = useRef(null);
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [isInvalidFile, setIsInvalidFile] = useState(true);
   const [feedback, setFeedback] = useState(false);
   const [tableData, setTableData] = useState(null)
+  const [isInvalidData, setIsInvalidData] = useState(true);
+
+  const resetComponents = () => {
+    setTableData(null)
+    setIsInvalidData(true)
+  };
 
   const handleFileSelect = async (event) => {
+    resetComponents();
     const file = event.target.files[0]
     const csvData = await csvReader(file)
     setSelectedFile(csvData)
@@ -33,9 +42,21 @@ export default function Table() {
     }
   };
 
+  const handleDataValidation = (data) => {
+    const isValidData = data.every((row) => row.validation.length === 0)
+    setIsInvalidData(!isValidData)
+  };
+
   const fetchApi = async () => {
     const response = await fetchAndValidateProducts(selectedFile.data);
+    handleDataValidation(response.data)
     setTableData(response.data)
+  };
+
+  const handleUpdate = async () => {
+    await updateProducts(tableData);
+    inputRef.current.value = null;
+    resetComponents();
   };
 
   useEffect(() => {
@@ -47,11 +68,11 @@ export default function Table() {
     <div>
 
       <h1>Ferramenta de Atualizar Preço</h1>
-      <input type="file" accept=".csv" onChange={handleFileSelect}/>
+      <input type="file" accept=".csv" ref={inputRef} onChange={handleFileSelect}/>
       <button type='button' disabled={isInvalidFile} onClick={fetchApi}>
         Validar
       </button>
-      <button type='button' disabled={false} onClick={()=>{}}>
+      <button type='button' disabled={isInvalidData} onClick={handleUpdate}>
         Atualizar
       </button>
 
@@ -81,7 +102,15 @@ export default function Table() {
                 <td>{product.name}</td>
                 <td>{formatCurrency(product.currentPrice)}</td>
                 <td>{formatCurrency(product.newPrice)}</td>
-                <td>{product.validation}</td>
+                <td>
+                  {
+                    product.validation.length > 0
+                    ? (<ul style={{ color: 'red' }}>
+                        {product.validation.map((error, idx) => (<li key={idx}>{error}</li>))}
+                      </ul>)
+                    : <span style={{ color: 'green' }}>OK!</span>
+                  }
+                </td>
               </tr>
             ))}
           </tbody>

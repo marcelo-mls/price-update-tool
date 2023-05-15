@@ -9,6 +9,13 @@ async function getProductsById (payload) {
 		// Os códigos de produtos informados existem?
 		if (!storedProducts.map(({id}) => id).includes(csvRow.code)) {
 			csvRow.validation.push('Produto inexistente');
+		} else {
+			const storedProduct = storedProducts.find(({id}) => id === csvRow.code);
+
+			csvRow.name = storedProduct.name;
+			csvRow.currentPrice = Number(storedProduct.salesPrice);
+			csvRow.association = storedProduct.association;
+			csvRow.type = storedProduct.type;
 		}
 	});
 

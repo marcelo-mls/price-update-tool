@@ -11,4 +11,3 @@ export default function csvReader(csvFile) {
     Papa.parse(csvFile, configObject)
   })
 }
-
