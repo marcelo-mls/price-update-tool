@@ -6,7 +6,11 @@ async function getProductsById (payload) {
 	const storedProducts = await productModel.getProductsById(csvIds);
 
 	csvValidation.forEach((csvRow) => {
-		// Os códigos de produtos informados existem?
+		// 1 - Os preços estão preenchidos e são valores numéricos validos?
+		if (typeof csvRow.newPrice !== 'number' || isNaN(csvRow.newPrice)) {
+			csvRow.validation.push('Novo preço não é valor um numérico válido');
+		}
+		// 2 - Os códigos de produtos informados existem?
 		if (!storedProducts.map(({id}) => id).includes(csvRow.code)) {
 			csvRow.validation.push('Produto inexistente');
 		} else {
@@ -22,6 +26,12 @@ async function getProductsById (payload) {
 	return csvValidation;
 }
 
+async function updateProductsById (payload) {
+	const result = await productModel.updateProductsById(payload);
+	return result;
+}
+
 module.exports = {
 	getProductsById,
+	updateProductsById,
 };

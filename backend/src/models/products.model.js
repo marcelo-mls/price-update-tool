@@ -49,6 +49,30 @@ async function getProductsById(ids) {
 	return result;
 }
 
+async function updateProductsById(payload) {
+	const conn = await dbConnection.getConnection();
+
+	try {
+		await conn.beginTransaction();
+		const query = 'UPDATE products SET sales_price = ? WHERE code = ?';
+
+		payload.forEach(async ({newPrice, code}) => {
+			await conn.execute(query, [Number(newPrice), Number(code)]);
+		});
+
+		await conn.commit();
+		return {status: 200, message: 'Records updated successfully'};
+
+	} catch (error) {
+		await conn.rollback();
+		return {status: 500, message: error};
+
+	} finally {
+		conn.release();
+	}
+}
+
 module.exports = {
 	getProductsById,
+	updateProductsById,
 };

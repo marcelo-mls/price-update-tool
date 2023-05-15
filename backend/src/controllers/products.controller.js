@@ -34,6 +34,17 @@ async function getProductsById (req, res) {
 	res.status(200).json(responseData);
 }
 
+async function updateProductsById (req, res) {
+	if (!Array.isArray(req.body) || !req.body.length) {
+		return res.status(400).send('Invalid or empty codes');
+	}
+
+	const result = await productService.updateProductsById(req.body);
+
+	res.status(result.status).json(result.message);
+}
+
 module.exports = {
 	getProductsById,
+	updateProductsById,
 };
