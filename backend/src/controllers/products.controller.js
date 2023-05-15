@@ -6,13 +6,32 @@ async function getProductsById (req, res) {
 	}
 
 	const csvIds = [];
-	
+	const csvValidation = [];
+
 	req.body.forEach((row) => {
 		csvIds.push(Number(row.product_code));
+		csvValidation.push({
+			code: Number(row.product_code),
+			newPrice: Number(row.new_price),
+			currentPrice: null,
+			name: '',
+			type: '',
+			association: [],
+			validation: [],
+		});
 	});
 
-	const result = await productService.getProductsById(csvIds);
-	res.status(200).json(result);
+	const result = await productService.getProductsById({csvIds, csvValidation});
+
+	const responseData = result.map(({code,name,currentPrice,newPrice,validation}) => ({
+		code,
+		name,
+		currentPrice,
+		newPrice,
+		validation
+	}));
+
+	res.status(200).json(responseData);
 }
 
 module.exports = {

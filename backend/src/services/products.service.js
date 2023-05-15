@@ -1,8 +1,18 @@
 const productModel = require('../models/products.model');
 
 async function getProductsById (payload) {
-	const storedProducts = await productModel.getProductsById(payload);
-	return storedProducts;
+	const {csvValidation, csvIds} = payload;
+
+	const storedProducts = await productModel.getProductsById(csvIds);
+
+	csvValidation.forEach((csvRow) => {
+		// Os códigos de produtos informados existem?
+		if (!storedProducts.map(({id}) => id).includes(csvRow.code)) {
+			csvRow.validation.push('Produto inexistente');
+		}
+	});
+
+	return csvValidation;
 }
 
 module.exports = {
