@@ -1,7 +1,7 @@
 const productModel = require('../models/products.model');
 
-async function getProductsById () {
-	const storedProducts = await productModel.getProductsById();
+async function getProductsById (payload) {
+	const storedProducts = await productModel.getProductsById(payload);
 	return storedProducts;
 }
 
