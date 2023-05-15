@@ -19,6 +19,9 @@ async function searchAndValidateProductsById (payload) {
 			csvRow.currentPrice = Number(storedProduct.salesPrice);
 			csvRow.association = storedProduct.association;
 			csvRow.type = storedProduct.type;
+
+			rules.checkNewPriceIsBelowCostPrice(csvRow, storedProduct.costPrice);
+			rules.checkPriceAdjustmentPercentage(csvRow);
 		}
 	});
 
