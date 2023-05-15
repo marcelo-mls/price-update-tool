@@ -22,6 +22,11 @@ async function searchAndValidateProductsById (payload) {
 
 			rules.checkNewPriceIsBelowCostPrice(csvRow, storedProduct.costPrice);
 			rules.checkPriceAdjustmentPercentage(csvRow);
+			const hasAssociationInCSV = rules.checkAssociation(csvRow, storedProducts);
+
+			if (hasAssociationInCSV) {
+
+			}
 		}
 	});
 

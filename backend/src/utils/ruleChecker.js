@@ -24,6 +24,23 @@ function checkPriceAdjustmentPercentage(csvProduct) {
 }
 
 // 5 - Produtos/pacotes que possuem associação, tem algum de seus associados no CSV?
+function checkAssociation(csvProduct, storedProducts) {
+	let hasAssociationInCSV = false;
+
+	const matchedProduct = storedProducts.find(({id}) => id === csvProduct.code);
+	const storedIds = storedProducts.map(({id}) => id);
+
+	if(matchedProduct.association.length) {
+		const associations = matchedProduct.association.map(({id}) => storedIds.includes(id));
+		
+		hasAssociationInCSV = associations.some((association) => association === true);
+
+		if(!hasAssociationInCSV) {
+			csvProduct.validation.push('Falta reajuste de preço do produto ou pacote associado');
+		}
+	}
+	return hasAssociationInCSV;
+}
 
 // 6 - O preço final da soma dos componentes é igual ao preço do pacote?
 
@@ -31,4 +48,5 @@ module.exports = {
 	checkTheNewPriceIsValid,
 	checkNewPriceIsBelowCostPrice,
 	checkPriceAdjustmentPercentage,
+	checkAssociation,
 };
