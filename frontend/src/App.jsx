@@ -1,8 +1,9 @@
 import './App.css'
+import Table from './utils/components/Table/Table';
 
 function App() {
   return (
-    <h1>Ferramenta de Atualizar Preço</h1>
+    <Table />
   )
 }
 
