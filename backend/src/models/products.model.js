@@ -1,6 +1,6 @@
 const dbConnection = require('./database/connection');
 
-async function getProductsById(ids) {
+async function searchAndValidateProductsById(ids) {
 	// eslint-disable-next-line no-unused-vars
 	const placeholders = ids.map((_id) => '?').join(', ');
 
@@ -73,6 +73,6 @@ async function updateProductsById(payload) {
 }
 
 module.exports = {
-	getProductsById,
+	searchAndValidateProductsById,
 	updateProductsById,
 };

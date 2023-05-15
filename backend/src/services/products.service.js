@@ -1,15 +1,14 @@
 const productModel = require('../models/products.model');
+const rules = require('../utils/ruleChecker');
 
-async function getProductsById (payload) {
+async function searchAndValidateProductsById (payload) {
 	const {csvValidation, csvIds} = payload;
 
-	const storedProducts = await productModel.getProductsById(csvIds);
+	const storedProducts = await productModel.searchAndValidateProductsById(csvIds);
 
 	csvValidation.forEach((csvRow) => {
-		// 1 - Os preços estão preenchidos e são valores numéricos validos?
-		if (typeof csvRow.newPrice !== 'number' || isNaN(csvRow.newPrice)) {
-			csvRow.validation.push('Novo preço não é valor um numérico válido');
-		}
+		rules.checkTheNewPriceIsValid(csvRow);
+
 		// 2 - Os códigos de produtos informados existem?
 		if (!storedProducts.map(({id}) => id).includes(csvRow.code)) {
 			csvRow.validation.push('Produto inexistente');
@@ -32,6 +31,6 @@ async function updateProductsById (payload) {
 }
 
 module.exports = {
-	getProductsById,
+	searchAndValidateProductsById,
 	updateProductsById,
 };

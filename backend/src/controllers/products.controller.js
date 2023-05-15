@@ -1,6 +1,6 @@
 const productService = require('../services/products.service');
 
-async function getProductsById (req, res) {
+async function searchAndValidateProductsById (req, res) {
 	if (!Array.isArray(req.body) || !req.body.length) {
 		return res.status(400).send('Invalid or empty codes');
 	}
@@ -21,7 +21,7 @@ async function getProductsById (req, res) {
 		});
 	});
 
-	const result = await productService.getProductsById({csvIds, csvValidation});
+	const result = await productService.searchAndValidateProductsById({csvIds, csvValidation});
 
 	const responseData = result.map(({code,name,currentPrice,newPrice,validation}) => ({
 		code,
@@ -45,6 +45,6 @@ async function updateProductsById (req, res) {
 }
 
 module.exports = {
-	getProductsById,
+	searchAndValidateProductsById,
 	updateProductsById,
 };
