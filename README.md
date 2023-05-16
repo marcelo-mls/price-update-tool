@@ -69,13 +69,13 @@ No back-end foi utilizado com [`Node.js`](https://nodejs.org/en) com [`Express`]
   </summary>
   
   - #### Tela inicial
-  ![Tela inicial](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/4870242d-10ec-472c-985a-037ea9862626)
+  ![Tela inicial](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/7d7ff5d4-d0c3-4420-81fc-29ce6884342e)
 
   - #### Feedback sobre estrutura do arquivo CSV
-  ![Feedback CSV](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/8b7c0fe5-e49c-45d7-8d1e-80e91dc84941)
+  ![Feedback CSV](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/524b480d-a2a6-42ec-9ed4-0ed4deaf01f0)
 
   - #### Feedback sobre a qualidade dos dados do CSV
-  ![Feedback Dados](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/a63d4989-3a60-412a-b28b-08fdfb47988b)
+  ![Feedback Dados](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/01e952fc-24c4-42fd-8ee7-c7dfd813a411)
 
 </details>
 
