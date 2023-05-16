@@ -66,18 +66,26 @@ export default function Table() {
 
   return (
     <div>
+      <header>
+        <h1>Ferramenta de Atualizar Preço</h1>
+          
+          <input className="file-input__input" type="file" accept=".csv" ref={inputRef} onChange={handleFileSelect}/>
 
-      <h1>Ferramenta de Atualizar Preço</h1>
-      <input type="file" accept=".csv" ref={inputRef} onChange={handleFileSelect}/>
-      <button type='button' disabled={isInvalidFile} onClick={fetchApi}>
-        Validar
-      </button>
-      <button type='button' disabled={isInvalidData} onClick={handleUpdate}>
-        Atualizar
-      </button>
+          <div className='header-form'>
+          <button type='button' disabled={isInvalidFile} onClick={fetchApi}>
+            Validar
+          </button>
+          <button type='button' disabled={isInvalidData} onClick={handleUpdate}>
+            Atualizar
+          </button>
+        </div>
 
+      </header>
+      
+
+      <main>
       {feedback && (
-        <div style={{ color: 'red' }}>
+        <div style={{ color: '#C52233' }}>
           <p><strong>Arquivo inválido!</strong></p>
           <p>Era esperado um arquivo CSV com 2 colunas (<strong>product_code</strong> e <strong>new_price</strong>) e pelo menos 1 registro.</p>
           <p>Seu arquivo contém {selectedFile.data.length} registro(s) e {selectedFile.headers.length} colunas: {selectedFile.headers.join(', ')}.</p>
@@ -105,10 +113,10 @@ export default function Table() {
                 <td>
                   {
                     product.validation.length > 0
-                    ? (<ul style={{ color: 'red' }}>
+                    ? (<ul style={{ color: '#C52233' }}>
                         {product.validation.map((error, idx) => (<li key={idx}>{error}</li>))}
                       </ul>)
-                    : <span style={{ color: 'green' }}>OK!</span>
+                    : <ul><li style={{ color: '#087CA7' }}>Validado!</li></ul>
                   }
                 </td>
               </tr>
@@ -116,6 +124,7 @@ export default function Table() {
           </tbody>
         </table>
       )}
+      </main>
 
     </div>
   )
