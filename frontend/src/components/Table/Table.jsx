@@ -85,7 +85,7 @@ export default function Table() {
 
       <main>
       {feedback && (
-        <div style={{ color: '#C52233' }}>
+        <div style={{ color: '#DA0C21' }}>
           <p><strong>Arquivo inválido!</strong></p>
           <p>Era esperado um arquivo CSV com 2 colunas (<strong>product_code</strong> e <strong>new_price</strong>) e pelo menos 1 registro.</p>
           <p>Seu arquivo contém {selectedFile.data.length} registro(s) e {selectedFile.headers.length} colunas: {selectedFile.headers.join(', ')}.</p>
@@ -113,10 +113,10 @@ export default function Table() {
                 <td>
                   {
                     product.validation.length > 0
-                    ? (<ul style={{ color: '#C52233' }}>
+                    ? (<ul style={{ color: '#DA0C21' }}>
                         {product.validation.map((error, idx) => (<li key={idx}>{error}</li>))}
                       </ul>)
-                    : <ul><li style={{ color: '#087CA7' }}>Validado!</li></ul>
+                    : <ul><li style={{ color: '#1446A0' }}>Validado!</li></ul>
                   }
                 </td>
               </tr>
