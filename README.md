@@ -17,9 +17,9 @@ O objetivo deste desafio é desenvolver essa ferramenta, a qual, seguindo certas
 #### Cenário:
   </summary>
   
-- O time de Compras fornecerá um arquivo `.CSV` contendo o código do produto e o novo preço.
-- O time Financeiro exige que o sistema impeça que o preço de venda dos produtos seja inferior ao custo.
-- O time de Marketing solicita que o sistema impeça reajustes maiores ou menores do que 10% do preço atual do produto.
+- O time de Compras fornecerá um arquivo `.CSV` contendo o código do produto e o novo preço;
+- O time Financeiro exige que o sistema impeça que o preço de venda dos produtos seja inferior ao custo;
+- O time de Marketing solicita que o sistema impeça reajustes maiores ou menores do que 10% do preço atual do produto;
 - Em alguns casos, produtos são vendidos em pacotes que consistem em um ou mais itens em quantidades diferentes. Quando o preço de um pacote é ajustado, é necessário que o mesmo arquivo `.CSV` contenha os ajustes dos preços dos itens, de forma que a soma dos preços dos itens resulte no preço total do pacote.
 </details>
 
@@ -29,15 +29,15 @@ O objetivo deste desafio é desenvolver essa ferramenta, a qual, seguindo certas
 #### Requisitos do Sistema:
   </summary>
 
-  - O sistema deve permitir o carregamento do arquivo de precificação.
-  - Botão de <button> Validar </button> para verificar os dados do arquivo:
-  - Verificar se todos os campos necessários estão presentes e são valores numéricos válidos.
-  - Verificar se os códigos de produtos informados existem.
-  - Verificar se o arquivo segue as regras estabelecidas no cenário.
-  - O botão de <button> Atualizar </button> só estará habilitado se todos os produtos do arquivo forem validados sem nenhuma violação de regras.
+  - O sistema deve permitir o carregamento do arquivo de precificação;
+  - Botão de <button> Validar </button> para verificar os dados do arquivo;
+  - Verificar se todos os campos necessários estão presentes e são valores numéricos válidos;
+  - Verificar se os códigos de produtos informados existem;
+  - Verificar se o arquivo segue as regras estabelecidas no cenário;
+  - O botão de <button> Atualizar </button> só estará habilitado se todos os produtos do arquivo forem validados sem nenhuma violação de regras;
   - Ao clicar em <button> Atualizar </button>, os novos preços devem ser salvos no banco de dados e preparar a tela para o envio de um novo arquivo.
 
-  Após a validação, deve-se exibir na tela algumas informações dos produtos enviados. No caso de violação de uma ou mais regras de validação, é necessário exibir qual regra foi quebrada ao lado de cada produto. São elas:
+  Após a validação, deve-se exibir na tela algumas informações dos produtos enviados. São elas:
 
   <table>
     <tr>
@@ -49,6 +49,8 @@ O objetivo deste desafio é desenvolver essa ferramenta, a qual, seguindo certas
     </tr>
   </table>
 </details>
+
+ No caso de violação de uma ou mais regras de validação, é necessário exibir qual regra foi quebrada ao lado de cada produto. 
 
 <br />
 
