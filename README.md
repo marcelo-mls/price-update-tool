@@ -1,6 +1,7 @@
 ## Desafio Shopper
 > Teste técnico referente à vaga de Desenvolvedor Full Stack Júnior na [Shopper](https://landing.shopper.com.br/).
 
+<br />
 
 # Ferramenta de Atualizar Preços
 
@@ -12,9 +13,10 @@ O objetivo deste desafio é desenvolver essa ferramenta, a qual, seguindo certas
 
 <details>
   <summary>
-
+    
 #### Cenário:
   </summary>
+  
 - O time de Compras fornecerá um arquivo `.CSV` contendo o código do produto e o novo preço.
 - O time Financeiro exige que o sistema impeça que o preço de venda dos produtos seja inferior ao custo.
 - O time de Marketing solicita que o sistema impeça reajustes maiores ou menores do que 10% do preço atual do produto.
@@ -48,35 +50,33 @@ O objetivo deste desafio é desenvolver essa ferramenta, a qual, seguindo certas
   </table>
 </details>
 
+<br />
+
 ## Desenvolvido com:
 
-<img height="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
-<img height="30" src="https://styled-components.com/logo.png">
-<img height="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
-<img height="30" src="https://styled-components.com/logo.png">
-<img height="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
-<img height="30" src="https://styled-components.com/logo.png">
-
 O front-end foi desenvolvido com [`React.js`](https://react.dev/) e [`Styled Components`](https://styled-components.com/).
-
 O back-end foi utilizado com [`Node.js`](https://nodejs.org/en) com [`Express`](https://expressjs.com/), [`MySQL`](https://www.mysql.com/), e [`Docker`](https://www.docker.com/).
 
+<br />
+
+## Demonstração:
 
 <details>
   <summary>
-
-## Demonstração:
   </summary>
   
   - #### Tela inicial
-  ![Tela inicial]()
+  ![Tela inicial](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/4870242d-10ec-472c-985a-037ea9862626)
 
   - #### Feedback sobre estrutura do arquivo CSV
-  ![Feedback CSV]()
+  ![Feedback CSV](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/8b7c0fe5-e49c-45d7-8d1e-80e91dc84941)
 
   - #### Feedback sobre a qualidade dos dados do CSV
-  ![Feedback Dados]()
+  ![Feedback Dados](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/a63d4989-3a60-412a-b28b-08fdfb47988b)
+
 </details>
+
+<br />
 
 ## Como Instalar:
 
@@ -121,6 +121,8 @@ npm run db:seed
 
 > O servidor irá rodar na porta **3001** e o banco de dados na porta **3306**. mas isso pode ser facilmente alterado nas **Váriáveis de Ambiente**.
 
+<br />
+
 ## Variáveis de Ambiente:
 Ao fazer o clone do repositório você vai receber um `.env.example`, com as informações abaixo. Basta renomear o arquivo para `.env`.
 
@@ -135,6 +137,8 @@ MYSQL_MULTIPLE_STATEMENTS=true
 ```
 > É importante manter as flags `MYSQL_DATABASE` e `MYSQL_MULTIPLE_STATEMENTS` com esses valores se deseja popular o banco através do comando: `npm run db:seed`
 
+<br />
+
 ## Rotas da API:
 
 Você pode testar a API com softwares como [`Insomnia`](https://insomnia.rest/download), [`Postman`](https://www.postman.com/) ou [`Thunder Client`](https://www.thunderclient.com/)
@@ -144,7 +148,6 @@ Você pode testar a API com softwares como [`Insomnia`](https://insomnia.rest/do
 
   - PATCH: `'/products'`
   > Esta rota é responsável por atualizar no banco de dados apenas o preço dos produtos, de acordo com as informações contidas no corpo da requisição.
-
 
 <br />
 
