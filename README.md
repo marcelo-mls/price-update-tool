@@ -56,8 +56,9 @@ O objetivo deste desafio é desenvolver essa ferramenta, a qual, seguindo certas
 
 ## Desenvolvido com:
 
-O front-end foi desenvolvido com [`React.js`](https://react.dev/) e [`Styled Components`](https://styled-components.com/).
-O back-end foi utilizado com [`Node.js`](https://nodejs.org/en) com [`Express`](https://expressjs.com/), [`MySQL`](https://www.mysql.com/), e [`Docker`](https://www.docker.com/).
+O front-end foi desenvolvido com [`React.js`](https://react.dev/).
+
+No back-end foi utilizado com [`Node.js`](https://nodejs.org/en) com [`Express`](https://expressjs.com/), [`MySQL`](https://www.mysql.com/), e [`Docker`](https://www.docker.com/).
 
 <br />
 
