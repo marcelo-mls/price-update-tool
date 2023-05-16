@@ -43,10 +43,44 @@ function checkAssociation(csvProduct, storedProducts) {
 }
 
 // 6 - O preço final da soma dos componentes é igual ao preço do pacote?
+function checkConsistencyBetweenPrices(csvProduct, csvValidation, storedProducts) {
+	const related = {packId: '', newPrice: 0,	products: []};
+
+	if (csvProduct.type === 'pacote') {
+		related.packId = csvProduct.code;
+		related.newPrice = csvProduct.newPrice;
+
+		csvProduct.association.forEach((associated) => {
+			const isProductInCSV = storedProducts.map(({id}) => id).includes(associated.id);
+			const productInCSV = csvValidation.find(({code}) => code === associated.id);
+			// se o produto associado está no csv
+			if(isProductInCSV) {
+				related.products.push({	productId: productInCSV.code,	qty: associated.qty, price: productInCSV.newPrice });
+			} else {
+				const productOutOfCSV = storedProducts.find((e) => e.id === csvProduct.code).association.find((e) => e.id !== productInCSV);
+				related.products.push({	productId: productOutOfCSV.id,qty: productOutOfCSV.qty,	price: productOutOfCSV.salesPrice	});
+			}
+		});
+	}
+
+	const totalPrice = related.products.reduce((acc, product) => acc + (product.qty * product.price), 0);
+
+	if (totalPrice !== related.newPrice) {
+		csvProduct.validation.push('Inconsistência entre os preços de pacotes e produtos');
+
+		csvProduct.association.map(({id}) => id).forEach((id) => {
+			const index = csvValidation.findIndex((product) => product.code === id);
+			if (index !== -1) {
+				csvValidation[index].validation.push('Inconsistência entre os preços de pacotes e produtos');
+			}
+		});
+	}
+}
 
 module.exports = {
 	checkTheNewPriceIsValid,
 	checkNewPriceIsBelowCostPrice,
 	checkPriceAdjustmentPercentage,
 	checkAssociation,
+	checkConsistencyBetweenPrices,
 };

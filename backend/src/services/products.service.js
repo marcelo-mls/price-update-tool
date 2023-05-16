@@ -25,7 +25,7 @@ async function searchAndValidateProductsById (payload) {
 			const hasAssociationInCSV = rules.checkAssociation(csvRow, storedProducts);
 
 			if (hasAssociationInCSV) {
-
+				rules.checkConsistencyBetweenPrices(csvRow, csvValidation, storedProducts);
 			}
 		}
 	});
