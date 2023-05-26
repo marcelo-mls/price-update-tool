@@ -7,20 +7,12 @@ import AppContext from '../../contexts/AppContext';
 import { MainContainer, StyledTable } from './style';
 
 export default function Table() {
-  const {
-    tableData,
-    selectedFile,
-    feedback,
-    isLoading,
-  } = useContext(AppContext)
+  const { tableData } = useContext(AppContext)
 
   return (   
       <MainContainer>
-      <Loading isLoading={isLoading} />
-      <FeedbackText
-        selectedFile={selectedFile}
-        feedbackType={feedback}
-      />
+      <Loading />
+      <FeedbackText />
       
       {tableData && (
         <StyledTable>

@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 
 import { Load } from './style';
+import { useContext } from 'react';
+import AppContext from '../../contexts/AppContext';
 
-export default function Loading(props) {
-  const {isLoading} = props
+export default function Loading() {
+  const { isLoading } = useContext(AppContext)
 
   return(
     <>

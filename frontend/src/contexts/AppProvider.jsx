@@ -1,34 +1,32 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [isInvalidFile, setIsInvalidFile] = useState(true);
-  const [feedbackType, setFeedbackType] = useState(null);
   const [tableData, setTableData] = useState(null)
-  const [isInvalidData, setIsInvalidData] = useState(true);
+
+  const [isFileValid, setIsFileValid] = useState(true);
+  const [isDataValid, setIsDataValid] = useState(true);
+  
+  const [feedbackType, setFeedbackType] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const context = useMemo(() => ({
-    tableData,
+    tableData, //table
     setTableData,
-    selectedFile,
+    selectedFile, //feedback
     setSelectedFile,
-    isInvalidFile,
-    setIsInvalidFile,
-    feedbackType,
+    isFileValid,
+    setIsFileValid,
+    feedbackType, //feedback
     setFeedbackType,
-    isInvalidData,
-    setIsInvalidData,
-    isLoading,
+    isDataValid,
+    setIsDataValid,
+    isLoading,  //loading
     setIsLoading,
-  }), [tableData, selectedFile, isInvalidFile, feedbackType, isInvalidData, isLoading]);
-
-  useEffect(() => {
-    
-  }, []);
+  }), [tableData, selectedFile, isFileValid, feedbackType, isDataValid, isLoading]);
 
   return (
     <AppContext.Provider value={context}>
