@@ -1,3 +1,5 @@
+import { MyFooter, LinkIcons } from './style';
+
 export default function Footer() {
   const navigation = [
     {
@@ -45,12 +47,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="main-footer">
+    <MyFooter>
       <p>Desenvolvido por Marcelo Marques &copy; {new Date().getFullYear()}</p>
       <nav>
       {navigation.map((item) => (
-            <a
-              className="footer-icons"
+            <LinkIcons
               key={item.name}
               href={item.href}
               target="_blank"
@@ -58,9 +59,9 @@ export default function Footer() {
             >
               {/* <span>{item.name}</span> */}
               {item.icon}
-            </a>
+            </LinkIcons>
           ))}
       </nav>
-    </footer>
+    </MyFooter>
   );
 }

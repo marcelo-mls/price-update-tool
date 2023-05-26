@@ -3,6 +3,7 @@ import AppContext from '../../contexts/AppContext';
 import { fetchAndValidateProducts, updateProducts } from '../../utils/api';
 import csvReader from '../../utils/csvReader';
 import toast from 'react-hot-toast';
+import { StyledHeader, FileInput } from './style';
 
 export default function HeaderForm() {
   const inputRef = useRef(null);
@@ -91,13 +92,13 @@ export default function HeaderForm() {
   }, [selectedFile]);
 
   return (
-    <header>
+    <StyledHeader>
       <h1>Ferramenta de Atualização de Preços</h1>
-      <div className='header-form'>
-      <input className="file-input__input" type="file" accept=".csv" ref={inputRef} onChange={handleFileSelect}/>
+      <div>
+        <FileInput type="file" accept=".csv" ref={inputRef} onChange={handleFileSelect}/>
         <button type='button' disabled={isInvalidFile} onClick={fetchApi}>Validar</button>
         <button type='button' disabled={isInvalidData} onClick={handleUpdate}>Atualizar</button>
       </div>
-    </header>
+    </StyledHeader>
   );
 }

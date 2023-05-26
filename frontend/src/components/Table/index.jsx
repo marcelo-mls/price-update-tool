@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 
 import formatCurrency from '../../utils/formatCurrency'
-import FeedbackText from '../FeedbackText/FeedbackText';
-import Loading from '../Loading/Loading';
+import FeedbackText from '../FeedbackText';
+import Loading from '../Loading';
 import AppContext from '../../contexts/AppContext';
+import { MainContainer, StyledTable } from './style';
 
 export default function Table() {
   const {
@@ -14,7 +15,7 @@ export default function Table() {
   } = useContext(AppContext)
 
   return (   
-      <main>
+      <MainContainer>
       <Loading isLoading={isLoading} />
       <FeedbackText
         selectedFile={selectedFile}
@@ -22,7 +23,7 @@ export default function Table() {
       />
       
       {tableData && (
-        <table>
+        <StyledTable>
           <thead>
             <tr>
               <th>Código</th>
@@ -50,8 +51,8 @@ export default function Table() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </StyledTable>
       )}
-      </main>
+      </MainContainer>
   )
 }

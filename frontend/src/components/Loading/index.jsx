@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 
+import { Load } from './style';
+
 export default function Loading(props) {
   const {isLoading} = props
 
   return(
     <>
       {isLoading && (
-        <div className="loading-container">
+        <Load>
           <div className="loading"></div>
-        </div>
+        </Load>
       )}
     </>
   )
