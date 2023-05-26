@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import AppContext from '../../contexts/AppContext';
@@ -9,22 +9,21 @@ import { StyledHeader, FileInput } from './style';
 export default function HeaderForm() {
   const inputRef = useRef(null);
 
+  const [disableValidateBtn, setDisableValidateBtn] = useState(true);
+  const [disableUpdateBtn, setDisableUpdateBtn] = useState(true);
+
   const {
     tableData,
     setTableData,
     selectedFile,
     setSelectedFile,
-    isFileValid,
-    setIsFileValid,
     setFeedbackType,
-    isDataValid,
-    setIsDataValid,
     setIsLoading,
   } = useContext(AppContext)
 
   const resetComponents = () => {
     setTableData(null)
-    setIsDataValid(true)
+    setDisableUpdateBtn(true)
   };
 
   const fetchApi = async () => {
@@ -33,19 +32,14 @@ export default function HeaderForm() {
 
     try {
       const response = await fetchAndValidateProducts(selectedFile.data);
-      if (response.status !== 200) {
-        setIsLoading(false);
-        return toast.error('Ops! Algo deu errado.');
-      }
+      if (response.status !== 200) return toast.error('Ops! Algo deu errado.');
       handleDataValidation(response.data);
       setTableData(response.data);
-      setIsLoading(false);
       toast.success('Validação Concluída!');
-
     } catch (error) {
-      setIsLoading(false);
       console.error(error);
-      toast.error('Ops! Algo deu errado.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,18 +50,11 @@ export default function HeaderForm() {
       const response = await updateProducts(tableData);
       inputRef.current.value = null;
       resetComponents();
-      setIsLoading(false);
-
-      if (response.status === 200) {
-        toast.success('Atualização Concluída!');
-      } else {
-        toast.error('Ops! Algo deu errado.');
-      }
-
+      if (response.status === 200) toast.success('Atualização Concluída!');
     } catch (error) {
-      setIsLoading(false);
       console.error(error);
-      toast.error('Ops! Algo deu errado.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -80,25 +67,24 @@ export default function HeaderForm() {
 
   const handleFileValidation = () => {
     if (!selectedFile) {
-      setIsDataValid(true);
+      setDisableUpdateBtn(true);
       setFeedbackType('error');
 
     } else {
       const { headers, data } = selectedFile;
-      const isValidFile =
-        headers.length === 2 &&
-        data.length > 0 &&
-        headers.includes('product_code') &&
-        headers.includes('new_price');
+      const isValidFile = headers.length === 2
+        && data.length > 0
+        && headers.includes('product_code')
+        && headers.includes('new_price');
 
-      setIsFileValid(!isValidFile);
+      setDisableValidateBtn(!isValidFile);
       setFeedbackType(isValidFile ? 'success' : 'error');
     }
   };
 
   const handleDataValidation = (data) => {
     const isValidData = data.every((row) => row.validation.length === 0)
-    setIsDataValid(!isValidData)
+    setDisableUpdateBtn(!isValidData)
   };
 
   useEffect(() => {
@@ -111,8 +97,8 @@ export default function HeaderForm() {
       <h1>Ferramenta de Atualização de Preços</h1>
       <div>
         <FileInput type="file" accept=".csv" ref={inputRef} onChange={handleFileSelect}/>
-        <button type='button' disabled={isFileValid} onClick={fetchApi}>Validar</button>
-        <button type='button' disabled={isDataValid} onClick={handleUpdate}>Atualizar</button>
+        <button type='button' disabled={disableValidateBtn} onClick={fetchApi}>Validar</button>
+        <button type='button' disabled={disableUpdateBtn} onClick={handleUpdate}>Atualizar</button>
       </div>
     </StyledHeader>
   );

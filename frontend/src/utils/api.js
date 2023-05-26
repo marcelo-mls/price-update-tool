@@ -20,8 +20,8 @@ export async function updateProducts(payload) {
     const response = await API.patch('products/', payload);
     return response;
   } catch (error) {
+    toast.error('Ops! Algo deu errado.')
     // eslint-disable-next-line no-console
     console.error(`${error.name}: ${error.message}`);
-    toast.error('Ops! Algo deu errado.')
   }
 }
