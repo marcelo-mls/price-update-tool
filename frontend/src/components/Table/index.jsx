@@ -5,6 +5,7 @@ import FeedbackText from '../FeedbackText';
 import Loading from '../Loading';
 import AppContext from '../../contexts/AppContext';
 import { MainContainer, StyledTable } from './style';
+import EditAndDeleteRow from '../EditAndDeleteRow';
 
 export default function Table() {
   const { tableData } = useContext(AppContext)
@@ -23,6 +24,7 @@ export default function Table() {
               <th>Preço Atual</th>
               <th>Novo Preço</th>
               <th>Validação</th>
+              <th>Ajustar</th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +42,7 @@ export default function Table() {
                       : (<p style={{ color: 'var(--main-green)' }}>Validado!</p>)
                     }
                 </td>
+                <EditAndDeleteRow product={product}/>
               </tr>
             ))}
           </tbody>
