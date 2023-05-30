@@ -64,13 +64,16 @@ No back-end foi utilizado com [`Node.js`](https://nodejs.org/en) com [`Express`]
   </summary>
   
   - #### Tela inicial
-  ![Tela inicial](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/7d7ff5d4-d0c3-4420-81fc-29ce6884342e)
+  ![Tela inicial](https://github.com/marcelo-mls/price-update-tool/assets/102492818/1f78c81a-cbb8-48ea-879b-6dce044ef9fb)
+
 
   - #### Feedback sobre estrutura do arquivo CSV
-  ![Feedback CSV](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/524b480d-a2a6-42ec-9ed4-0ed4deaf01f0)
+  ![Feedback negativo sobre estrutura do arquivo CSV](https://github.com/marcelo-mls/price-update-tool/assets/102492818/1b1b7518-dc22-4f9d-a45e-4351dbe37223)
+  ![Feedback positivo sobre estrutura do arquivo CSV](https://github.com/marcelo-mls/price-update-tool/assets/102492818/1b7aaf7d-fa8b-436d-bfc5-473f55359bdd)
+
 
   - #### Feedback sobre a qualidade dos dados do CSV
-  ![Feedback Dados](https://github.com/marcelo-mls/shopper-teste-tecnico/assets/102492818/01e952fc-24c4-42fd-8ee7-c7dfd813a411)
+  ![Feedback sobre a qualidade dos dados do CSV](https://github.com/marcelo-mls/price-update-tool/assets/102492818/d8a823c0-4c4b-4c00-bbb1-7cf1548233cd)
 
 </details>
 
