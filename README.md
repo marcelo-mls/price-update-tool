@@ -1,8 +1,3 @@
-## Desafio Shopper
-> Teste técnico referente à vaga de Desenvolvedor Full Stack Júnior na [Shopper](https://landing.shopper.com.br/).
-
-<br />
-
 # Ferramenta de Atualizar Preços
 
 ## Descrição:
@@ -89,17 +84,17 @@ Estas instruções fornecerão a você uma cópia completa do projeto instalado 
 
 > Se você usa [**Docker**](https://www.docker.com/) em sua máquina, aqui está um comando para criar rapidamente um contêiner de **MySQL** já configurado com de acordo com as **variáveis de ambiente** de desenvolvimento deste projeto
 ```sh
-docker run --name mysql-shopper-dev -e MYSQL_ROOT_PASSWORD=shopper-password -p 3306:3306 -d mysql:8
+docker run --name mysql-dev-base -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=price_update_tool -p 3306:3306 -d mysql:8
 ```
-> Se você for usar outras variáveis de ambiente, na flag `MYSQL_ROOT_PASSWORD` informe a senha definida do arquivo `.env`. Neste EXEMPLO foi utilizada a senha ilustrativa `shopper-password` apenas para fins de desenvolvimento e testes.
+> Se você for usar outras variáveis de ambiente, na flag `MYSQL_ROOT_PASSWORD` informe a senha definida do arquivo `.env`. Neste EXEMPLO foi utilizada a senha ilustrativa `password` apenas para fins de desenvolvimento e testes.
 
 1. Clone o repositório:
 ```sh
-git clone git@github.com:marcelo-mls/shopper-teste-tecnico.git
+git clone git@github.com:marcelo-mls/price-update-tool.git
 ```
 2. Entre na pasta do repositório que você acabou de clonar:
 ```sh
-cd shopper-teste-tecnico
+cd price-update-tool
 ```
 3. Acesse as pastas de `frontend` e `backend`, instale as dependências e inicie o projeto:
 ```sh
@@ -134,8 +129,8 @@ API_PORT=3001
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
 MYSQL_USER=root
-MYSQL_PASSWORD=shopper-password
-MYSQL_DATABASE=shopper
+MYSQL_PASSWORD=password
+MYSQL_DATABASE=price_update_tool
 MYSQL_MULTIPLE_STATEMENTS=true
 ```
 > É importante manter as flags `MYSQL_DATABASE` e `MYSQL_MULTIPLE_STATEMENTS` com esses valores se deseja popular o banco através do comando: `npm run db:seed`
@@ -157,6 +152,7 @@ Você pode testar a API com softwares como [`Insomnia`](https://insomnia.rest/do
 ---
 
 Desenvolvido por [Marcelo Marques](https://www.linkedin.com/in/marcelo-mls/), © 2023.
+> Teste técnico referente à vaga de Desenvolvedor Full Stack Júnior na [Shopper](https://landing.shopper.com.br/).
 
 <div>
   <a href = "https://www.linkedin.com/in/marcelo-mls/">
