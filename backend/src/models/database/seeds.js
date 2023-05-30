@@ -1,3 +1,4 @@
+require('dotenv').config();
 const dbConnection = require('./connection');
 
 const colors = {
@@ -7,13 +8,15 @@ const colors = {
 	reset: '\x1b[0m'
 };
 
+const DATABASE = process.env.MYSQL_DATABASE;
+
 async function dbSeedAndReset() {
 	const query = `
-    DROP DATABASE IF EXISTS shopper;
+    DROP DATABASE IF EXISTS ${DATABASE};
 
-    CREATE DATABASE shopper;
+    CREATE DATABASE ${DATABASE};
 
-    USE shopper;
+    USE ${DATABASE};
 
     CREATE TABLE products
     (

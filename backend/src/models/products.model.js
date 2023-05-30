@@ -15,6 +15,7 @@ async function searchAndValidateProductsById(ids) {
 		WHERE packs.pack_id = main.code
 		GROUP BY packs.pack_id
 	`;
+
 	const subQueryForRelatedPacks = `
 		SELECT
 			JSON_ARRAYAGG(JSON_OBJECT(
@@ -25,6 +26,7 @@ async function searchAndValidateProductsById(ids) {
 		WHERE packs.product_id = main.code
 		GROUP BY packs.product_id
  	`;
+
 	const mainQuery = `
 		SELECT
 			main.code AS id,
@@ -44,6 +46,7 @@ async function searchAndValidateProductsById(ids) {
 		FROM products AS main
 		WHERE main.code IN (${placeholders})
   `;
+	
 	const [result] = await dbConnection.execute(mainQuery,	[...ids]);
 
 	return result;

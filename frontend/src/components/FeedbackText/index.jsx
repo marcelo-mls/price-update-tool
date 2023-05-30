@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import AppContext from '../../contexts/AppContext';
 import { useContext } from 'react';
+import { FeedBackContainer } from './style';
 
 export default function FeedbackText() {
   const {
@@ -9,7 +10,7 @@ export default function FeedbackText() {
   } = useContext(AppContext)
 
   return(
-    <>
+    <FeedBackContainer>
       {selectedFile && (
         <>
           {feedbackType && feedbackType === 'success' && (
@@ -30,7 +31,7 @@ export default function FeedbackText() {
           )}
         </>
       )}
-    </>
+    </FeedBackContainer>
   )
 }
 
